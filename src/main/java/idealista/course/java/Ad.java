@@ -1,60 +1,68 @@
 package idealista.course.java;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ad {
 	
-	private final Integer id;
+	private final User user;
+	private final LocalDate date;
 	private final Typology typology;
+	private final Operation operation;
 	private final Double price;
-	private final Boolean active;
-	private final User publisher;
 
-	public Ad(Integer id, Typology typology, Double price, User publisher) {
-		this.id = id;
+	public Ad(User user, LocalDate date, Typology typology, Operation operation, Double price) {
+		this.user = user;
+		this.date = date;
 		this.typology = typology;
+		this.operation = operation;
 		this.price = price;
-		this.publisher = publisher;
-		this.active = true;
 	}
 
-	private Ad(Ad ad, Boolean isActive) {
-		this.id = ad.getId();
-		this.typology = ad.getTypology();
-		this.price = ad.getPrice();
-		this.publisher = ad.getUser();
-		this.active = isActive;
+	public User getUser() {
+		return user;
 	}
-
-	public Integer getId() {
-		return id;
+	
+	public LocalDate getDate() {
+		return date;
 	}
-
+	
 	public Typology getTypology() {
 		return typology;
+	}
+	
+	public Operation getOperation() {
+		return operation;
 	}
 
 	public Double getPrice() {
 		return price;
 	}
 
-	public Boolean isActive() {
-		return active;
-	}
-
-	public User getUser() {
-		return publisher;
-	}
-
-	public Ad deactivate() {
-		return new Ad(this, false);
-	}
-
 	public enum Typology {
 		House, Garage, Office
 	}
+	
+	public enum Operation {
+		Sale, Rent
+	}
 
 	public static List<Ad> sampleLargeListOfAds() {
-		return null;
+		List<Ad> adList = new ArrayList<>();
+		IntStream.range(0, 300)
+			.parallel()
+			.forEach(i -> adList.add(createRandomAd()));
+		return adList;
+	}
+
+	public static Ad createRandomAd() {
+		User user = User.createRandomUser();
+		LocalDate date = LocalDate.now();
+		Typology typology = Typology.values()[(int)(Math.random() * 3)];
+		Operation operation = Operation.values()[(int)(Math.random() * 2)];
+		Double price = Math.random() * 1000000;
+		return new Ad(user, date, typology, operation, price);
 	}
 }
