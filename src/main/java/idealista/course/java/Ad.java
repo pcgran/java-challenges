@@ -52,7 +52,7 @@ public class Ad {
 	public static List<Ad> sampleLargeListOfAds() {
 		List<Ad> adList = new ArrayList<>();
 		IntStream.range(0, 300)
-			.parallel()
+			//.parallel()
 			.forEach(i -> adList.add(createRandomAd()));
 		return adList;
 	}

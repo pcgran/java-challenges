@@ -3,7 +3,7 @@ package idealista.course.java;
 public class User {
 	
 	private final static String[] names = {"Jon", "Arya", "Ned", "Jaime", "Cersei", 
-			"Joffrey", "Sansa", "Dany", "Tyrion", "Ramsay", "Catelyn", "Theon"};
+			"Joffrey", "Sansa", "Dany", "Tyrion", "Ramsay", "Catelyn", "Theon", "Juan"};
 	private final static String[] prefixes = {"33", "34", "35", "36"};
 	
 	private final Integer id;

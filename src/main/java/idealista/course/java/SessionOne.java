@@ -1,17 +1,17 @@
 package idealista.course.java;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
 import java.util.Map;
 
 public class SessionOne {
 	
-	/**
-	 * Teniendo la clase Ad y la lista de anuncios completar.
-	 */
-
 	public static List<String> getSpanishPhoneFromAds() {
-		List<Ad> adList = Ad.sampleLargeListOfAds();
-		return null; // Telefonos que empiezan por +34...
+		return Ad.sampleLargeListOfAds().stream()
+			.map(ad -> ad.getUser().getPhone())
+			.filter(phone -> phone.startsWith("34"))
+			.collect(toList());
 	}
 
 	public static Map<User, Ad> cheapestAdByUser() {
@@ -19,6 +19,6 @@ public class SessionOne {
 	}
 
 	public static String aTextWithNumberOfAdsByUser() {
-		return ""; // El usuario {nombre} tiene {numero} anuncios \n
+		return null; // El usuario {nombre} tiene {numero} anuncios \n
 	}
 }
